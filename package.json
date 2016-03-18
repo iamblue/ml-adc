@@ -1,0 +1,13 @@
+{
+  "name": "ml-adc",
+  "version": "0.0.1",
+  "description": "The adc package for Microlattice.js",
+  "supportIC":[ "mt7687" ],
+  "main": "index.js",
+  "src": ["./src/ml-adc.c"],
+  "scripts": {
+    "test": ""
+  },
+  "author": "iamblue",
+  "license": "Apache2"
+}
