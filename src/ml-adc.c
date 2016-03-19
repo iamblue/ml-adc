@@ -9,7 +9,7 @@ static uint16_t adc_to_voltage(uint16_t source_code) {
   return voltage;
 }
 
-DELCARE_HANDLER(adc) {
+DELCARE_HANDLER(adcRead) {
 
   uint16_t data[4] = {0};
   uint16_t voltage[4] = {0};
@@ -42,5 +42,5 @@ void ml_adc_init(void) {
   hal_pinmux_set_function(2, 7);
   hal_pinmux_set_function(3, 7);
 
-  REGISTER_HANDLER(adc);
+  REGISTER_HANDLER(adcRead);
 }
