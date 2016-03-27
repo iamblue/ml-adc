@@ -3,7 +3,7 @@
 ## API
 
 ``` js
-adcRead(
+__adcRead(
   pin // number
 )
 ```
@@ -12,6 +12,6 @@ adcRead(
 
 ``` js
 
-  adcRead(0); // read A0
+  __adcRead(0); // read A0
 
 ```
