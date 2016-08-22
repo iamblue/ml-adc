@@ -1,5 +1,5 @@
 #include <string.h>
-#include "jerry.h"
+#include "jerry-api.h"
 #include "pinmux.h"
 #include "hal_adc.h"
 #include "microlattice.h"
@@ -14,7 +14,7 @@ DELCARE_HANDLER(__adcRead) {
   uint16_t data[4] = {0};
   uint16_t voltage[4] = {0};
   uint8_t count = 0;
-  uint8_t channel = (int)args_p[0].v_float32;
+  uint8_t channel = (int) jerry_get_number_value(args_p[0]);
   int check = 0;
 
   hal_adc_init();
@@ -28,11 +28,8 @@ DELCARE_HANDLER(__adcRead) {
     }
   }
 
-  ret_val_p->type = JERRY_API_DATA_TYPE_FLOAT64;
-  ret_val_p->v_float64 = voltage[channel];
-
   hal_adc_deinit();
-  return true;
+  return jerry_create_number(voltage[channel]);
 }
 
 void ml_adc_init(void) {
