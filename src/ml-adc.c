@@ -11,25 +11,15 @@ static uint16_t adc_to_voltage(uint16_t source_code) {
 
 DELCARE_HANDLER(__adcRead) {
 
-  uint16_t data[4] = {0};
-  uint16_t voltage[4] = {0};
-  uint8_t count = 0;
+  uint16_t data[1] = {0};
+  uint16_t voltage[1] = {0};
   uint8_t channel = (int) jerry_get_number_value(args_p[0]);
-  int check = 0;
 
   hal_adc_init();
-
-  while(check < 1) {
-    hal_adc_get_data_polling(count, &data[count]);
-    voltage[count] = adc_to_voltage(data[count]);
-    count++;
-    if(count == 4) {
-      check = 1;
-    }
-  }
-
+  hal_adc_get_data_polling(channel, &data[1]);
+  voltage[1] = adc_to_voltage(data[1]);
   hal_adc_deinit();
-  return jerry_create_number(voltage[channel]);
+  return jerry_create_number(voltage[1]);
 }
 
 void ml_adc_init(void) {
